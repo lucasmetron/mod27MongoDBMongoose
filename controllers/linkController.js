@@ -5,8 +5,6 @@ const redirect = async (req, res) => {
 
     try {
         let doc = await Link.findOne({ title: title });
-
-        // res.send(doc) //somente para retornar na tela o obj para saber se deu certo ou nao.
         res.redirect(doc.url)
 
     } catch (error) {
@@ -14,4 +12,16 @@ const redirect = async (req, res) => {
     }
 }
 
-module.exports = { redirect }
+const addLink = async (req, res) => {
+    let link = new Link(req.body)
+
+    try {
+        let doc = await link.save();
+        res.send(doc)
+    } catch (error) {
+        res.send(error)
+    }
+}
+
+
+module.exports = { redirect, addLink }
