@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const linkRoute = require('./routers/linkRoute');
 
 
-
 mongoose.connect('mongodb://localhost/link', { useUnifiedTopology: true, useNewUrlParser: true });
 
 let db = mongoose.connection;
