@@ -17,6 +17,7 @@ app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'templates'))
 
 app.use('/', linkRoute);
+app.use(express.static(__dirname + '/templates'));
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`)

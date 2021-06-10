@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Links</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+
+    <% for (let i=0; i<links.length; i++){ %>
+
+        <div id="<%= links[i].id %> ">
+
+            <h2 class="teste">
+                Título: <%= links[i].title %>
+            </h2>
+            <div class="teste1">
+                Descrição: <%= links[i].description %>
+            </div>
+            <div class="teste1">
+                URL: <%= links[i].url %>
+            </div>
+            <div class="teste1">
+                ID: <%= links[i]._id %>
+            </div>
+            <div class="teste1">
+                Clicks: <%= links[i].click %>
+            </div>
+
+        </div>
+
+        <% } %>
+
+</body>
+
+</html>
