@@ -48,7 +48,7 @@ const deleteLink = async (req, res) => {
     try {
         // res.send(await Link.deleteOne({ _id: id })) maneira que aprendemos anteriormente 
         await Link.findByIdAndDelete(id); //Metodo do mongoose
-        res.send(id);
+        res.redirect('/all');
     } catch (error) {
         res.status(404).send(error);
     }

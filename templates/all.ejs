@@ -16,22 +16,26 @@
 
         <div id="<%= links[i]._id %> ">
 
-            <h2 class="teste">
-                Título: <%= links[i].title %>
-            </h2>
-            <div class="teste1">
-                Descrição: <%= links[i].description %>
-            </div>
-            <div class="teste1">
-                URL: <%= links[i].url %>
-            </div>
-            <div class="teste1">
-                ID: <%= links[i]._id %>
-            </div>
-            <div class="teste1">
-                Clicks: <%= links[i].click %>
-            </div>
-            <button onclick="deleteLink('<%=links[i]._id %>')">Deletar</button>
+            <form method="POST" action="/<%= links[i]._id %>?_method=DELETE">
+
+                <h2 class="teste">
+                    Título: <%= links[i].title %>
+                </h2>
+                <div class="teste1">
+                    Descrição: <%= links[i].description %>
+                </div>
+                <div class="teste1">
+                    URL: <%= links[i].url %>
+                </div>
+                <div class="teste1">
+                    ID: <%= links[i]._id %>
+                </div>
+                <div class="teste1">
+                    Clicks: <%= links[i].click %>
+                </div>
+                <button type="submit">Deletar</button>
+
+            </form>
         </div>
 
         <% } %>
@@ -50,7 +54,6 @@
                                 alert(erro.message)
                             })
                         }
-
                     })
 
                     window.location.reload()
