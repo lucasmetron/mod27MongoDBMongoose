@@ -37,5 +37,22 @@ const allLinks = async (req, res) => {
     }
 }
 
+const deleteLink = async (req, res) => {
 
-module.exports = { redirect, addLink, allLinks }
+    let id = req.params.id;
+    if (!id) {
+        id = req.body.id;
+    }
+
+    try {
+        // res.send(await Link.deleteOne({ _id: id })) maneira que aprendemos anteriormente 
+        res.send(await Link.findByIdAndDelete(id)); //Metodo do mongoose
+    } catch (error) {
+        res.send(error);
+    }
+}
+
+
+
+
+module.exports = { redirect, addLink, allLinks, deleteLink }
