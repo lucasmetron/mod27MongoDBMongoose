@@ -35,6 +35,7 @@ const allLinks = async (req, res) => {
     } catch (error) {
         res.render(error)
     }
+
 }
 
 const deleteLink = async (req, res) => {
@@ -46,9 +47,10 @@ const deleteLink = async (req, res) => {
 
     try {
         // res.send(await Link.deleteOne({ _id: id })) maneira que aprendemos anteriormente 
-        res.send(await Link.findByIdAndDelete(id)); //Metodo do mongoose
+        await Link.findByIdAndDelete(id); //Metodo do mongoose
+        res.send(id);
     } catch (error) {
-        res.send(error);
+        res.status(404).send(error);
     }
 }
 
