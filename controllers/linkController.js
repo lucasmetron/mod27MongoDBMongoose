@@ -22,7 +22,7 @@ const addLink = async (req, res) => {
 
     try {
         let doc = await link.save();
-        res.send("Link adicionado com sucesso!");
+        res.redirect('/');
     } catch (error) {
         res.render('index', { error, body: req.body })
     }
@@ -48,7 +48,7 @@ const deleteLink = async (req, res) => {
     try {
         // res.send(await Link.deleteOne({ _id: id })) maneira que aprendemos anteriormente 
         await Link.findByIdAndDelete(id); //Metodo do mongoose
-        res.redirect('/all');
+        res.redirect('/');
     } catch (error) {
         res.status(404).send(error);
     }
