@@ -14,29 +14,30 @@
     <h1>Links</h1>
     <a href="/add">Adicionar Link</a>
 
-    <% for (let i=0; i<links.length; i++){ %>
+    <%for (let i=0; i<links.length; i++){%>
 
-        <div id="<%= links[i]._id %> ">
+        <div id="<%=links[i]._id%> ">
 
-            <form method="POST" action="/<%= links[i]._id %>?_method=DELETE">
+            <form method="POST" action="/<%=links[i]._id%>?_method=DELETE">
 
                 <h2 class="teste">
                     Título: <%= links[i].title %>
                 </h2>
                 <div class="teste1">
-                    Descrição: <%= links[i].description %>
+                    Descrição: <%=links[i].description%>
                 </div>
                 <div class="teste1">
-                    URL: <%= links[i].url %>
+                    URL: <%=links[i].url%>
                 </div>
                 <div class="teste1">
-                    ID: <%= links[i]._id %>
+                    ID: <%=links[i]._id%>
                 </div>
                 <div class="teste1">
-                    Clicks: <%= links[i].click %>
+                    Clicks: <%=links[i].click%>
                 </div>
                 <button type="submit">Deletar</button>
-                <a href="/edit">Editar Link</a>
+
+                <a href="/edit/<%=links[i]._id%>">Editar Link</a>
             </form>
         </div>
 

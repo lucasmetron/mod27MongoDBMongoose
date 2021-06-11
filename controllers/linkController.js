@@ -31,7 +31,7 @@ const addLink = async (req, res) => {
 const allLinks = async (req, res) => {
     try {
         let docs = await Link.find({})
-        res.render('all', { lynks: docs });
+        res.render('all', { links: docs });
     } catch (error) {
         res.render(error)
     }
@@ -58,10 +58,10 @@ const loadLink = async (req, res) => {
 
     let id = req.params.id;
     try {
-        let doc = await Link.find(id)
-        res.render('/edit', { error: false, body: doc });
+        let doc = await Link.findOne({ _id: id })
+        res.render('edit', { error: false, body: doc });
     } catch (error) {
-        res.status(404).send(error);
+        res.status(404).send(error, id);
     }
 }
 
@@ -70,7 +70,7 @@ const editLink = async (req, res) => {
     let link = {};
     link.title = req.body.title;
     link.descrption = req.body.descrption;
-    link.urls = req.body.urls;
+    link.url = req.body.url;
 
     let id = req.params.id;
     if (!id) {
@@ -78,7 +78,7 @@ const editLink = async (req, res) => {
     }
 
     try {
-        let doc = await Link.updateOne({ _id: id }, link);
+        let doc = await Link.findByIdAndUpdate(id, link);
         res.redirect('/');
     } catch (error) {
         res.render('edit', { error, body: req.body })
@@ -87,4 +87,4 @@ const editLink = async (req, res) => {
 }
 
 
-module.exports = { redirect, addLink, allLinks, deleteLink, loadLink, editLink, editLink }
+module.exports = { redirect, addLink, allLinks, deleteLink, loadLink, editLink }

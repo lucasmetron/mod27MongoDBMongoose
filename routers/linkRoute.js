@@ -8,9 +8,9 @@ router.use(methodOverride('_method'))
 router.get('/', linkController.allLinks) //essa rota tem que vir primeiro que a rota de baixo para não dar conflito 
 router.get('/:title', linkController.redirect);
 router.get('/add', (req, res) => {
-    res.render('index', { error: false, body: {} })
+    res.render('index', { error: false, body: {} });
 });
-router.get('/edit/id:', linkController.loadLink)
+router.get('/edit/id:', linkController.loadLink);
 
 router.post('/', express.urlencoded({ extended: true }), linkController.addLink);
 router.post('/edit/id:', express.urlencoded({ extended: true }), linkController.editLink);
