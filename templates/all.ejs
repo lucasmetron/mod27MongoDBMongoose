@@ -6,62 +6,76 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Links</title>
-    <link rel="stylesheet" href="./style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 </head>
 
 <body>
+    <div class="container">
+        <h1>Links</h1>
 
-    <h1>Links</h1>
-    <a href="/add">Adicionar Link</a>
+        <a class="text-decoration-none text-info" href="/add">Adicionar Link</a>
 
-    <%for (let i=0; i<links.length; i++){%>
+        <%for (let i=0; i<links.length; i++){%>
 
-        <div id="<%=links[i]._id%> ">
+            <div class="card p-3 mb-3" id="<%=links[i]._id%> ">
 
-            <form method="POST" action="/<%=links[i]._id%>?_method=DELETE">
+                <form class="d-flex justify-content-between align-items-center" method="POST"
+                    action="/<%=links[i]._id%>?_method=DELETE">
+                    <div class="d-flex flex-column">
+                        <h2 class="teste">
+                            Título: <%= links[i].title %>
+                        </h2>
+                        <div class="">
+                            Descrição: <%=links[i].description%>
+                        </div>
+                        <div class="text-muted">
+                            URL: <%=links[i].url%>
+                        </div>
+                        <div class="text-muted">
+                            ID: <%=links[i]._id%>
+                        </div>
+                        <div class="text-success"> <i class="material-icons">assessment</i>
+                            Clicks: <%=links[i].click%>
+                        </div>
 
-                <h2 class="teste">
-                    Título: <%= links[i].title %>
-                </h2>
-                <div class="teste1">
-                    Descrição: <%=links[i].description%>
-                </div>
-                <div class="teste1">
-                    URL: <%=links[i].url%>
-                </div>
-                <div class="teste1">
-                    ID: <%=links[i]._id%>
-                </div>
-                <div class="teste1">
-                    Clicks: <%=links[i].click%>
-                </div>
-                <button type="submit">Deletar</button>
 
-                <a href="/edit/<%=links[i]._id%>">Editar Link</a>
-            </form>
-        </div>
+                    </div>
 
-        <% } %>
+                    <div class="d-flex flex-column">
+                        <a class="btn btn-info mb-1" href="/edit/<%=links[i]._id%>">Editar Link</a>
+                        <button class="btn btn-danger" type="submit">Deletar</button>
+                    </div>
 
-            <script>
-                function deleteLink(id) {
 
-                    fetch('/' + id, { method: 'DELETE' }).then(res => {
-                        if (res.status === 200) {
-                            res.text().then(linkId => {
-                                console.log(linkId)
-                                document.getElementById(linkId).remove();
-                            })
-                        } else {
-                            res.json().then(erro => {
-                                alert(erro.message)
-                            })
-                        }
+                </form>
+            </div>
+
+            <% } %>
+    </div>
+
+
+    <script>
+        function deleteLink(id) {
+
+            fetch('/' + id, { method: 'DELETE' }).then(res => {
+                if (res.status === 200) {
+                    res.text().then(linkId => {
+                        console.log(linkId)
+                        document.getElementById(linkId).remove();
                     })
-
-                    window.location.reload()
+                } else {
+                    res.json().then(erro => {
+                        alert(erro.message)
+                    })
                 }
-            </script>
+            })
+
+            window.location.reload()
+        }
+    </script>
 
 </body>
 
